@@ -2,7 +2,7 @@
 
 from bs4 import BeautifulSoup as bs
 import requests
-from gather_funcs import dategather, hourgather, tempgather
+from gather_funcs import dategather, hourgather, tempgather, condgather
 import csv
 
 #requesting page from sinoptik.bg
@@ -19,14 +19,16 @@ temps = tempgather(soup)
 
 date = dategather(soup)
 
-#writing data down in a CSV file and printing it in terminal
-header = [f'Дата : {date}', 'Час', 'Температура']
+conds = condgather(soup)
+
+# writing data down in a CSV file and printing it in terminal
+header = [f'Дата : {date}', 'Час', 'Температура', 'Състояние']
 with open('/home/blight/data.csv', 'w', newline='', encoding='utf-8') as datafile:
     datawriter = csv.writer(datafile, delimiter=',', 
         quoting=csv.QUOTE_MINIMAL)
     datawriter.writerow(header)
     for i in range(12):
-        data = [None, hours[i], temps[i]]
+        data = [None, hours[i], temps[i], conds[i],]
         datawriter.writerow(data)
         print(data)
   

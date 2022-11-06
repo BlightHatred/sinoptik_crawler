@@ -15,6 +15,7 @@ def hourgather(soup):
     hours = []
 
     index = 0
+
     while index < 12:
         hour = ByHourHour.pop(0)
         hours.append(hour.text)
@@ -30,4 +31,17 @@ def tempgather(soup):
     for item in ByHourTemp:
         if ByHourTemp.index(item) <= 24 and ByHourTemp.index(item) % 2 == 1:
             temps.append(item.text)
+
     return temps
+
+def condgather(soup):
+    ByHourCond = soup.find_all('strong', 'wfByHourCond')
+
+    conds = []
+
+    for i in range(12):
+        cond = ByHourCond[i].text
+        cond = str(cond).strip()
+        conds.append(cond)
+        
+    return conds
