@@ -30,6 +30,6 @@ with open('/home/blight/data.csv', 'w', newline='', encoding='utf-8') as datafil
     for i in range(12):
         data = [None, hours[i], temps[i], conds[i],]
         datawriter.writerow(data)
-        print(data)
+        print(' - '.join(data[1:4]))
   
 
